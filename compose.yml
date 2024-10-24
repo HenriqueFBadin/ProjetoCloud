@@ -1,0 +1,26 @@
+name: app
+
+services:
+  api:
+    build: ./app
+    depends_on:
+      - db
+    ports:
+      - 8080:8080
+    environment:
+      API_KEY: ${API_KEY:-yKlqfFMksKTQCc5BCWhR6X4YsDilXZvM1nEvcPIC}
+      SECRET_KEY: ${SECRET_KEY:-f!3D@8gT4jK$2pR%9zY^7hB&5xC*1mQ}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres} 
+      POSTGRES_USER: ${POSTGRES_USER:-admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-cloud}
+
+  db:
+    image: postgres:17
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-postgres} 
+      POSTGRES_USER: ${POSTGRES_USER:-admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-cloud}
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql

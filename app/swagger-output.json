@@ -1,0 +1,597 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "MY API",
+    "description": "API de cloud",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "Home"
+        ],
+        "summary": "Página inicial da API. Demonstra alguns endpoints disponíveis e uma documentação simples.",
+        "description": "Este endpoint é a página inicial da API. Aqui você pode encontrar alguns endpoints disponíveis e uma documentação simples.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/registrar": {
+      "post": {
+        "tags": [
+          "Registro"
+        ],
+        "summary": "Registrar um novo usuário",
+        "description": "Endpoint para registrar um novo usuário.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações passadas pelo usuário para registro",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Usuário registrado com sucesso!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Usuário registrado com sucesso!"
+                },
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 14
+                    },
+                    "nome": {
+                      "type": "string",
+                      "example": "Cloud"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "cloud0@gmail.com"
+                    }
+                  }
+                },
+                "token": {
+                  "type": "string",
+                  "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsIm5vbWUiOiJDbG91ZCIsImVtYWlsIjoiY2xvdWQwQGdtYWlsLmNvbSIsImlhdCI6MTcyOTE4OTM1NiwiZXhwIjoxNzI5MTkyOTU2fQ(...)"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de validação. Ou o valor passado como nome é nulo ou um dos parâmetros passou de 100 caracteres."
+          },
+          "409": {
+            "description": "Email já está em uso."
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "summary": "Realizar o login do usuário",
+        "description": "Endpoint para fazer o login do usuário.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Informações passadas pelo usuário para fazer o login",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "object"
+                },
+                "properties": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    },
+                    "senha": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login do usuário realizado com sucesso!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Login realizado com sucesso!"
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Cloud"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "cloud0@gmail.com"
+                },
+                "token": {
+                  "type": "string",
+                  "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsIm5vbWUiOiJDbG91ZCIsImVtYWlsIjoiY2xvdWQwQGdtYWlsLmNvbSIsImlhd(...)"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Erro de email não encontrado ou senha incorreta."
+          },
+          "500": {
+            "description": "Erro no servidor"
+          }
+        }
+      }
+    },
+    "/consultar": {
+      "get": {
+        "tags": [
+          "Consultar"
+        ],
+        "summary": "Consultar dados da NASA APOD",
+        "description": "Este endpoint permite consultar dados da NASA sobre o Astronomy Picture of the Day (APOD). É necessário autenticação JWT para acessar este recurso.",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Token JWT necessário para autenticação. O formato deve ser: Bearer {token}",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dados consultados com sucesso!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Dados da NASA consultados com sucesso!"
+                },
+                "data": {
+                  "type": "string",
+                  "example": "2024-10-16"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Astronomy Picture of the Day"
+                },
+                "url": {
+                  "type": "string",
+                  "example": "https://apod.nasa.gov/apod/image/2410/picture.jpg"
+                },
+                "explanation": {
+                  "type": "string",
+                  "example": "Explicação detalhada sobre a imagem do dia..."
+                },
+                "copyright": {
+                  "type": "string",
+                  "example": "NASA"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Token não fornecido ou inválido",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Token não fornecido"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "403": {
+            "description": "Acesso negado - Token inválido",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Token inválido"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Erro ao consultar dados de qualidade do ar"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Registro": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "example": "object"
+        },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "example": {
+                  "type": "string",
+                  "example": "Usuário registrado com sucesso!"
+                }
+              }
+            },
+            "user": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "object"
+                },
+                "properties": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "integer"
+                        },
+                        "example": {
+                          "type": "number",
+                          "example": 13
+                        }
+                      }
+                    },
+                    "nome": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "example": {
+                          "type": "string",
+                          "example": "Exemplos"
+                        }
+                      }
+                    },
+                    "email": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "example": {
+                          "type": "string",
+                          "example": "Exemplos.com.br@gmail.com"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "token": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Token JWT gerado para autenticação do usuário. Este token deve ser usado em requisições subsequentes para acessar rotas protegidas da API."
+                },
+                "example": {
+                  "type": "string",
+                  "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsIm5vbWUiOiJFeGVtcGxvcyIsImVtYWlsIjoiRXhlbXBsb3MuY29tLmJyQGdtYWlsLmNvbSIsImlhdCI6MT(...)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Login": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "example": "object"
+        },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Mensagem de retorno do endpoint"
+                },
+                "example": {
+                  "type": "string",
+                  "example": "Login registrado com sucesso!"
+                }
+              }
+            },
+            "nome": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Nome do usuário"
+                },
+                "example": {
+                  "type": "string",
+                  "example": "Example da Silva"
+                }
+              }
+            },
+            "email": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Email do usuário"
+                },
+                "example": {
+                  "type": "string",
+                  "example": "Exemplos.com.br@gmail.com"
+                }
+              }
+            },
+            "token": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Token JWT gerado para autenticação do usuário. Este token deve ser usado em requisições subsequentes para acessar rotas protegidas da API."
+                },
+                "example": {
+                  "type": "string",
+                  "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsIm5vbWUiOiJFeGVtcGxvcyIsImVtYWlsIjoiRXhlbXBsb3MuY29tLmJyQGdtYWlsLmNvbSIsImlhdCI6MT(...)"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Consultar": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "example": "object"
+        },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Mensagem de retorno do endpoint"
+                },
+                "example": {
+                  "type": "string",
+                  "example": "Dados da NASA consultados com sucesso!"
+                }
+              }
+            },
+            "data": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Data da consulta realizada pelo usuário"
+                },
+                "example": {
+                  "type": "string",
+                  "example": "17/10/2024"
+                }
+              }
+            },
+            "title": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "título do arquivo consultado pelo usuário"
+                },
+                "example": {
+                  "type": "string",
+                  "example": "Título do arquivo"
+                }
+              }
+            },
+            "url": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "URL do arquivo consultado pelo usuário"
+                },
+                "example": {
+                  "type": "string",
+                  "example": "https://api.nasa.gov/planetary/apod(...)"
+                }
+              }
+            },
+            "explanation": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Explicação do arquivo consultado pelo usuário"
+                },
+                "example": {
+                  "type": "string",
+                  "example": "Explicação do arquivo"
+                }
+              }
+            },
+            "copyright": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Direitos autorais do arquivo consultado pelo usuário"
+                },
+                "example": {
+                  "type": "string",
+                  "example": "Direitos autorais do arquivo"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
