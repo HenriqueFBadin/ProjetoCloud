@@ -2,11 +2,11 @@ name: app
 
 services:
   api:
-    build: ./app
+    image: henriquesproject  # Use a imagem que você criou anteriormente
     depends_on:
       - db
     ports:
-      - 8080:8080
+      - "8080:8080"
     environment:
       API_KEY: ${API_KEY:-yKlqfFMksKTQCc5BCWhR6X4YsDilXZvM1nEvcPIC}
       SECRET_KEY: ${SECRET_KEY:-f!3D@8gT4jK$2pR%9zY^7hB&5xC*1mQ}

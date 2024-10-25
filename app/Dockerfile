@@ -12,6 +12,7 @@ COPY package*.json ./
 # Verifique o que foi copiado
 RUN echo "Após copiar os arquivos JSON:" && ls -la .
 
+COPY . ./
 # Continue com o restante do Dockerfile
 RUN rm -Rf ./node_modules
 RUN npm install
