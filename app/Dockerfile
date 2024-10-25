@@ -4,7 +4,7 @@ FROM node:20-bullseye-slim AS build
 RUN mkdir -p /app
 WORKDIR /app
 RUN ls -l
-COPY package*.json ./
+COPY ./package*.json ./
 RUN ls -l # Adicione isso para ver o que foi copiado
 COPY package-lock*.json ./
 RUN ls -l # Adicione isso para ver o que foi copiado
