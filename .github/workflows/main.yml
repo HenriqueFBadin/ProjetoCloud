@@ -21,17 +21,17 @@ jobs:
       - name: Build and test
         uses: docker/build-push-action@v6
         with:
-          context: ./app  # Define o contexto como o diretório 'app'
+          context: app  # Define o contexto como o diretório 'app'
           target: test
           load: true
-          file: ./app/Dockerfile  # Caminho para o Dockerfile
+          file: app/Dockerfile  # Caminho para o Dockerfile
           
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: ./app  # Define o contexto como o diretório 'app'
+          context: app  # Define o contexto como o diretório 'app'
           platforms: linux/amd64,linux/arm64/v8
           push: true
           target: prod
           tags: ${{ vars.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest
-          file: ./app/Dockerfile  # Caminho para o Dockerfile
+          file: app/Dockerfile  # Caminho para o Dockerfile
