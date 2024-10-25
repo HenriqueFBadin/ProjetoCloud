@@ -2,7 +2,8 @@ name: app
 
 services:
   api:
-    image: henriquesproject  # Use a imagem que você criou anteriormente
+    image: henriquefb/henriquesproject:db-autocreate  # Use a imagem que você criou anteriormente
+    #build: ./app
     depends_on:
       - db
     ports:
@@ -22,5 +23,3 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-postgres} 
       POSTGRES_USER: ${POSTGRES_USER:-admin}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-cloud}
-    volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql

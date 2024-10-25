@@ -77,7 +77,6 @@ app.post('/registrar', async (req, res) => {
 
     try {
         console.log("Registrando usuário...");
-        console.log("Senha: ", senha);
         const hashedPassword = await bcrypt.hash(senha, saltRounds);
 
         const result = await pool.query(
