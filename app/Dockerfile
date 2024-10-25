@@ -3,8 +3,8 @@ FROM node:20-bullseye-slim as build
 
 RUN mkdir -p /app
 WORKDIR /app
-COPY package*.json ./
-COPY package-lock*.json ./
+COPY package*.json ./app/
+COPY package-lock*.json ./app/
 COPY . ./
 RUN rm -Rf ./node_modules
 RUN npm install
