@@ -14,11 +14,42 @@ const saltRounds = 10;
 
 app.use(express.json());
 
-app.listen(PORT, () => {
+async function checkDbConnection() {
+    while (true) {
+        try {
+            await pool.query('SELECT 1');
+            console.log('Conexão com o banco de dados bem-sucedida!');
+            break;
+        } catch (err) {
+            console.log('Aguardando o banco de dados ficar disponível...');
+            await new Promise(resolve => setTimeout(resolve, 2000)); // Espera 2 segundos antes de tentar novamente
+        }
+    }
+}
+
+async function createTable() {
+    try {
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS usuarios (
+                id SERIAL PRIMARY KEY,
+                nome VARCHAR(100) NOT NULL,
+                email VARCHAR(100) UNIQUE NOT NULL,
+                senha VARCHAR(100) NOT NULL
+            );
+        `);
+        console.log("Tabela 'usuarios' criada ou já existente.");
+    } catch (err) {
+        console.error("Erro ao criar a tabela 'usuarios':", err);
+    }
+}
+
+app.listen(PORT, async () => {
+    await checkDbConnection();
+    await createTable();
     console.log(`Server is running on port ${PORT}`);
 });
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.post('/registrar', async (req, res) => {
     /*
@@ -119,11 +150,8 @@ app.post('/login', async (req, res) => {
         description: 'Informações passadas pelo usuário para fazer o login',
         required: true,
         schema: {
-            type: 'object',
-            properties: {
-                email: { type: 'string' },
-                senha: { type: 'string' }
-            }
+            email: 'string',
+            senha: 'string'
         }
     }
     #swagger.responses[200] = {

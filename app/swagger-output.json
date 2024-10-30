@@ -17,20 +17,6 @@
     "application/json"
   ],
   "paths": {
-    "/": {
-      "get": {
-        "tags": [
-          "Home"
-        ],
-        "summary": "Página inicial da API. Demonstra alguns endpoints disponíveis e uma documentação simples.",
-        "description": "Este endpoint é a página inicial da API. Aqui você pode encontrar alguns endpoints disponíveis e uma documentação simples.",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/registrar": {
       "post": {
         "tags": [
@@ -285,7 +271,7 @@
               "properties": {
                 "message": {
                   "type": "string",
-                  "example": "Erro ao consultar dados de qualidade do ar"
+                  "example": "Erro ao consultar dados da NASA"
                 }
               },
               "xml": {
