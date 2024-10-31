@@ -11,7 +11,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-cloud}
 
   api:
-    #image: henriquefb/henriquesproject:db-autocreate  # Use a imagem que você criou anteriormente
+    #image: henriquefb/henriquesproject:finalist  # Use a imagem que você criou anteriormente
     build: ./app
     depends_on:
       - db
