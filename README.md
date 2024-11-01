@@ -191,7 +191,7 @@ Para interagir com a API, você pode utilizar o Postman ou o terminal CMD do dir
 
 ### Usando o Postman
 
-1.  **Instale o Postman**: Se ainda não o possui, faça o download e instale o Postman aqui.
+1.  **Instale o Postman**: Se ainda não o possui, faça o download e instale o Postman [aqui](https://www.postman.com/downloads/).
 2.  **Realize as requisições**: Use as informações dos endpoints documentados abaixo para realizar suas requisições.
 
 ### Usando cURL
