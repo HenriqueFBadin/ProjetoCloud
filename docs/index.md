@@ -220,7 +220,7 @@ Substitua os parâmetros como `<Seu nome>` pelo seu próprio nome e `<JWT>` pelo
 
 # Vídeo de Execução
 
-Veja um vídeo curto de execução da aplicação [aqui](#).
+Veja um vídeo curto de execução da aplicação [aqui](https://youtu.be/WbELbTJkU0w).
 
 # Docker Hub
 
