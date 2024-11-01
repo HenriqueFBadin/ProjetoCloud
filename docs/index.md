@@ -187,7 +187,7 @@ _**resposta de erro na requisição (500)**_
 
 ---
 
-Para interagir com a API, você pode utilizar o Postman ou o terminal CMD do diretório com cURL.
+Para interagir com a API, você pode utilizar o Postman ou o terminal CMD do diretório com cURL. Além disso, é possível utilizar o swagger da API no endpoint `/docs`. Recomendo o uso do Postman para uma melhor visualização das respostas.
 
 ### Usando o Postman
 
