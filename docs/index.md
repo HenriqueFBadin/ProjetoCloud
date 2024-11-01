@@ -224,7 +224,7 @@ Veja um vídeo curto de execução da aplicação [aqui](https://youtu.be/WbELbT
 
 # Imagens do Projeto
 
-Aqui estão algumas imagens relacionadas ao projeto:
+Aqui estão as screenshots da aplicação funcionando.
 
 ## Imagem 1
 
