@@ -222,6 +222,22 @@ Substitua os parâmetros como `<Seu nome>` pelo seu próprio nome e `<JWT>` pelo
 
 Veja um vídeo curto de execução da aplicação [aqui](https://youtu.be/WbELbTJkU0w).
 
+# Imagens do Projeto
+
+Aqui estão algumas imagens relacionadas ao projeto:
+
+## Imagem 1
+
+![Descrição da Imagem 1](./Tela1.png)
+
+## Imagem 2
+
+![Descrição da Imagem 2](./Tela2.png)
+
+## Imagem 3
+
+![Descrição da Imagem 3](./Tela3.png)
+
 # Docker Hub
 
 Imagem disponível no Docker Hub: [Link para Docker Hub](https://hub.docker.com/layers/henriquefb/henriquesproject/ver-final/images/sha256-1d0c941eb00a0db8bd568b1fd501fce855d8464c88288557890b79028b9e92d6?context=repo)
