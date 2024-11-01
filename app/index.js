@@ -38,6 +38,7 @@ async function createTable() {
             );
         `);
         console.log("Tabela 'usuarios' criada ou já existente.");
+        console.log("Acesse a documentação da API em http://localhost:8080/docs");
     } catch (err) {
         console.error("Erro ao criar a tabela 'usuarios':", err);
     }
@@ -70,11 +71,6 @@ app.post('/registrar', async (req, res) => {
         description: 'Usuário registrado com sucesso!',
         schema: {
             "message": "Usuário registrado com sucesso!",
-            "user": {
-                "id": 14,
-                "nome": "Cloud",
-                "email": "cloud0@gmail.com"
-            },
             "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsIm5vbWUiOiJDbG91ZCIsImVtYWlsIjoiY2xvdWQwQGdtYWlsLmNvbSIsImlhdCI6MTcyOTE4OTM1NiwiZXhwIjoxNzI5MTkyOTU2fQ(...)"
         }
     }
@@ -97,13 +93,13 @@ app.post('/registrar', async (req, res) => {
         return res.status(400).json({ error: 'Nome não pode ser nulo.' });
     }
     if (nome.length > 100) {
-        return res.status(400).json({ error: 'Nome estourou o limite de 100 caracteres.' });
+        return res.status(400).json({ error: 'Nome estourou o limite de caracteres.' });
     }
     if (email.length > 100) {
-        return res.status(400).json({ error: 'Email estourou o limite de 100 caracteres.' });
+        return res.status(400).json({ error: 'Email estourou o limite de caracteres.' });
     }
     if (senha.length > 100) {
-        return res.status(400).json({ error: 'Senha estourou o limite de 100 caracteres.' });
+        return res.status(400).json({ error: 'Senha estourou o limite de caracteres.' });
     }
 
     try {
@@ -123,7 +119,6 @@ app.post('/registrar', async (req, res) => {
 
         res.status(201).json({
             message: 'Usuário registrado com sucesso!',
-            user: usuarioSemSenha,
             token: token
         });
         
@@ -158,8 +153,6 @@ app.post('/login', async (req, res) => {
         description: 'Login do usuário realizado com sucesso!',
         schema: {
             "message": "Login realizado com sucesso!",
-            "nome": "Cloud",
-            "email": "cloud0@gmail.com",
             "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsIm5vbWUiOiJDbG91ZCIsImVtYWlsIjoiY2xvdWQwQGdtYWlsLmNvbSIsImlhd(...)"
         }
     }
@@ -193,14 +186,12 @@ app.post('/login', async (req, res) => {
 
         res.status(200).json({
             message: 'Login realizado com sucesso!',
-            nome: usuario.nome,
-            email: usuario.email,
             token: token
         });
 
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Erro no servidor');
+        res.status(500).send({erro: 'Erro no servidor'});
     }
 });
 
@@ -209,14 +200,7 @@ app.get('/consultar', autenticarJWT, async (req, res) => {
     /*
     #swagger.tags = ['Consultar']
     #swagger.summary = 'Consultar dados da NASA APOD'
-    #swagger.description = 'Este endpoint permite consultar dados da NASA sobre o Astronomy Picture of the Day (APOD). É necessário autenticação JWT para acessar este recurso.'
-    
-    #swagger.parameters['Authorization'] = {
-        in: 'header',
-        description: 'Token JWT necessário para autenticação. O formato deve ser: Bearer {token}',
-        required: true,
-        type: 'string'
-    }
+    #swagger.description = 'Este endpoint permite consultar dados da NASA sobre o Astronomy Picture of the Day (APOD). É necessário autenticação JWT para acessar este recurso. O token deve ser enviado no cabeçalho Authorization como Bearer <token>.'
 
     #swagger.responses[200] = {
         description: 'Dados consultados com sucesso!',
@@ -244,13 +228,12 @@ app.get('/consultar', autenticarJWT, async (req, res) => {
         description: 'Erro interno no servidor',
         schema: { message: 'Erro ao consultar dados da NASA' }
     }
-*/
+    */
 
-    const apiKey =  process.env.API_KEY;
+    const apiKey = process.env.API_KEY;
     try {
         const response = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}`);
         
-
         res.status(200).json({
             message: 'Dados da NASA consultados com sucesso!',
             data: response.data.date,
@@ -262,7 +245,8 @@ app.get('/consultar', autenticarJWT, async (req, res) => {
 
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Erro ao consultar dados Dados da NASA');
+        res.status(500).send('Erro ao consultar dados da NASA');
     }
 });
+
 

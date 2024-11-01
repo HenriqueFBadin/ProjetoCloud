@@ -1,15 +1,20 @@
 const jwt = require('jsonwebtoken');
 const pool = require('./postgresConfig');
 
-const secret = "f!3D@8gT4jK$2pR%9zY^7hB&5xC*1mQ"; // Carregando a chave secreta do JWT
+const secret = process.env.JWT_SECRET || "f!3D@8gT4jK$2pR%9zY^7hB&5xC*1mQ"; // Carregando a chave secreta do JWT
 
 const generateToken = (usuario) => {
-  return jwt.sign({ id: usuario.id, nome: usuario.nome, email: usuario.email }, secret, { expiresIn: '1h' });
+  return jwt.sign(
+    { id: usuario.id, nome: usuario.nome, email: usuario.email },
+    secret,
+    { expiresIn: '1h' }
+  );
 };
 
 const autenticarJWT = async (req, res, next) => {
-  const token = req.header('Authorization');
-  
+  const authHeader = req.header('Authorization');
+  const token = authHeader && authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : null;
+
   if (!token) {
     return res.status(401).json({ error: 'Token não fornecido.' });
   }
@@ -33,6 +38,7 @@ const autenticarJWT = async (req, res, next) => {
   } catch (err) {
     console.error("Erro na verificação do token:", err.message);
     
+    // Respostas para diferentes erros
     if (err.name === 'TokenExpiredError') {
       return res.status(403).json({ error: 'Token expirado.' });
     } else if (err.name === 'JsonWebTokenError') {

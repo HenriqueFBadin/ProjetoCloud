@@ -59,23 +59,6 @@
                   "type": "string",
                   "example": "Usuário registrado com sucesso!"
                 },
-                "user": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number",
-                      "example": 14
-                    },
-                    "nome": {
-                      "type": "string",
-                      "example": "Cloud"
-                    },
-                    "email": {
-                      "type": "string",
-                      "example": "cloud0@gmail.com"
-                    }
-                  }
-                },
                 "token": {
                   "type": "string",
                   "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsIm5vbWUiOiJDbG91ZCIsImVtYWlsIjoiY2xvdWQwQGdtYWlsLmNvbSIsImlhdCI6MTcyOTE4OTM1NiwiZXhwIjoxNzI5MTkyOTU2fQ(...)"
@@ -114,32 +97,13 @@
             "schema": {
               "type": "object",
               "properties": {
-                "type": {
+                "email": {
                   "type": "string",
-                  "example": "object"
+                  "example": "string"
                 },
-                "properties": {
-                  "type": "object",
-                  "properties": {
-                    "email": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "example": "string"
-                        }
-                      }
-                    },
-                    "senha": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "example": "string"
-                        }
-                      }
-                    }
-                  }
+                "senha": {
+                  "type": "string",
+                  "example": "string"
                 }
               }
             }
@@ -154,14 +118,6 @@
                 "message": {
                   "type": "string",
                   "example": "Login realizado com sucesso!"
-                },
-                "nome": {
-                  "type": "string",
-                  "example": "Cloud"
-                },
-                "email": {
-                  "type": "string",
-                  "example": "cloud0@gmail.com"
                 },
                 "token": {
                   "type": "string",
@@ -188,12 +144,12 @@
           "Consultar"
         ],
         "summary": "Consultar dados da NASA APOD",
-        "description": "Este endpoint permite consultar dados da NASA sobre o Astronomy Picture of the Day (APOD). É necessário autenticação JWT para acessar este recurso.",
+        "description": "Este endpoint permite consultar dados da NASA sobre o Astronomy Picture of the Day (APOD). É necessário autenticação JWT para acessar este recurso. O token deve ser enviado no cabeçalho Authorization como Bearer <token>.",
         "parameters": [
           {
             "name": "Authorization",
             "in": "header",
-            "description": "Token JWT necessário para autenticação. O formato deve ser: Bearer {token}",
+            "description": "Adicione o token JWT gerado no login da segunte forma: Bearer Seu_Token",
             "required": true,
             "type": "string"
           }

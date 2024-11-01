@@ -11,8 +11,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-cloud}
 
   api:
-    #image: henriquefb/henriquesproject:finalist  # Use a imagem que você criou anteriormente
-    build: ./app
+    image: henriquefb/henriquesproject:ver-final
     depends_on:
       - db
     ports:
