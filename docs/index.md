@@ -13,7 +13,7 @@ Este projeto é uma API que permite o cadastro, login e consulta de imagens do e
 Para rodar a aplicação, siga estes passos:
 
 1. **Baixe o arquivo compose.yml:**
-   <a href="https://raw.githubusercontent.com/HenriqueFBadin/ProjetoCloud/main/compose.yml" id="donwload">
+   <a href="https://raw.githubusercontent.com/HenriqueFBadin/ProjetoCloud/main/compose.yml" id="download">
    <button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
    Baixar compose.yml
    </button>
@@ -224,7 +224,7 @@ Veja um vídeo curto de execução da aplicação [aqui](#).
 
 # Docker Hub
 
-Imagem disponível no Docker Hub: [Link para Docker Hub](https://hub.docker.com/layers/henriquefb/henriquesproject/final-version/images/sha256-2bfee1ece6d4eebd63ee528b5e5696711f9e799889fb2e59f3d25316942f9153?context=repo)
+Imagem disponível no Docker Hub: [Link para Docker Hub](https://hub.docker.com/layers/henriquefb/henriquesproject/ver-final/images/sha256-1d0c941eb00a0db8bd568b1fd501fce855d8464c88288557890b79028b9e92d6?context=repo)
 
 # Arquivo Compose.yaml caso a instalação pelo botão não funcione
 
