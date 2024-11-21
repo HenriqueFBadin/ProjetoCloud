@@ -1,3 +1,7 @@
-site_name: My Docs
+site_name: Projeto Cloud - API Restful e AWS
+repo_url: https://github.com/HenriqueFBadin/ProjetoCloud
 theme:
   name: material
+nav:
+  - Home: index.md
+  - Deploy No AWS: aws-deploy.md

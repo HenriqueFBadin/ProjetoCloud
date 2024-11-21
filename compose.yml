@@ -1,19 +1,21 @@
 name: app
 
 services:
-  db:
+  postgres:
     image: postgres:17
     ports:
       - 5432:5432
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-projeto} 
       POSTGRES_USER: ${POSTGRES_USER:-projeto}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-cloud}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-projeto}
+      POSTGRES_HOST: ${POSTGRES_HOST:-postgres}
 
   api:
-    image: henriquefb/henriquesproject:ver-final
+    build: ./app
+    #image: henriquefb/henriquesproject:ver-final
     depends_on:
-      - db
+      - postgres
     ports:
       - "8080:8080"
     environment:
@@ -21,4 +23,5 @@ services:
       SECRET_KEY: ${SECRET_KEY:-f!3D@8gT4jK$2pR%9zY^7hB&5xC*1mQ}
       POSTGRES_DB: ${POSTGRES_DB:-projeto} 
       POSTGRES_USER: ${POSTGRES_USER:-projeto}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-cloud}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-projeto}
+      POSTGRES_HOST: ${POSTGRES_HOST:-postgres}

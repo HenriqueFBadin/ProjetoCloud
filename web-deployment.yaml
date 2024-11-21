@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+        - name: nodejs
+          image: henriquefb/henriquesproject:aws
+          env:
+            - name: SECRET_KEY
+              value: f!3D@8gT4jK$2pR%9zY^7hB&5xC*1mQ
+            - name: API_KEY
+              value: yKlqfFMksKTQCc5BCWhR6X4YsDilXZvM1nEvcPIC
+            - name: POSTGRES_DB
+              value: projeto
+            - name: POSTGRES_USER
+              value: projeto
+            - name: POSTGRES_PASSWORD
+              value: projeto
+            - name: POSTGRES_HOST
+              value: postgres
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-app
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: nodejs

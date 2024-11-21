@@ -4,11 +4,11 @@
 
 Henrique F. Badin
 
-# Explicação do Projeto
+## Explicação do Projeto
 
 Este projeto é uma API que permite o cadastro, login e consulta de imagens do espaço, obtidas aleatoriamente a partir de uma API da NASA. Desenvolvido com Node.js, a aplicação gerencia usuários em um banco de dados PostgreSQL em um container Docker.
 
-# Como Executar a Aplicação
+## Como Executar a Aplicação
 
 Para rodar a aplicação, siga estes passos:
 
@@ -45,7 +45,7 @@ document.getElementById('download').addEventListener('click', function(event) {
 3. **Acesse a aplicação:**
    A aplicação estará disponível em `http://localhost:8080`, conforme configurado no `compose.yaml`.
 
-# Documentação dos Endpoints
+## Documentação dos Endpoints
 
 ### POST /registrar
 
@@ -183,7 +183,7 @@ _**resposta de erro na requisição (500)**_
 }
 ```
 
-# Testando a API
+## Testando a API
 
 ---
 
@@ -218,31 +218,31 @@ Copiar código e adaptá-lo
 
 Substitua os parâmetros como `<Seu nome>` pelo seu próprio nome e `<JWT>` pelo token obtido após o login.
 
-# Vídeo de Execução
+## Vídeo de Execução
 
 Veja um vídeo curto de execução da aplicação [aqui](https://youtu.be/WbELbTJkU0w).
 
-# Imagens do Projeto
+## Imagens do Projeto
 
 Aqui estão as screenshots da aplicação funcionando.
 
-## Imagem 1
+### Imagem 1
 
 ![Descrição da Imagem 1](./Tela1.png)
 
-## Imagem 2
+### Imagem 2
 
 ![Descrição da Imagem 2](./Tela2.png)
 
-## Imagem 3
+### Imagem 3
 
 ![Descrição da Imagem 3](./Tela3.png)
 
-# Docker Hub
+## Docker Hub
 
 Imagem disponível no Docker Hub: [Link para Docker Hub](https://hub.docker.com/layers/henriquefb/henriquesproject/ver-final/images/sha256-1d0c941eb00a0db8bd568b1fd501fce855d8464c88288557890b79028b9e92d6?context=repo)
 
-# Arquivo Compose.yaml caso a instalação pelo botão não funcione
+## Arquivo Compose.yaml caso a instalação pelo botão não funcione
 
 O arquivo `compose.yaml` está localizado na raiz do projeto `https://github.com/HenriqueFBadin/ProjetoCloud`. Caso não consiga instalá-lo pelo botão, busque-o nesse repositório. Ele utiliza imagens do Docker Hub e configura o PostgreSQL e a API para que não haja necessidade de builds adicionais.
 
