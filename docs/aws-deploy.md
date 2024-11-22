@@ -18,7 +18,7 @@ A partir daqui, este documento descreve as etapas que foram necessárias para cr
 
     2.1. **Criar uma chave de acesso**: Para configurar o AWS CLI, é necessário criar uma chave de acesso na AWS. Para isso os seguintes passos foram seguidos:
 
-    - Faça login no AWS [Management Console](Faça login no AWS Management Console)
+    - Faça login no AWS Management Console
 
       > Conta de usuário único:
 
@@ -65,7 +65,7 @@ A partir daqui, este documento descreve as etapas que foram necessárias para cr
 
     Após criar o cluster, foi configrado o contexto do `kubectl` para se conectar ao cluster EKS:
 
-    <div class="terminal">eksctl create cluster --name henrique-app --region us-east-2 --nodes 2 --node-type t3.medium</div>
+    <div class="terminal">aws eks --region us-east-2 update-kubeconfig --name henrique-app</div>
 
     Este comando atualiza o arquivo de configuração `kubeconfig` para permitir que o `kubectl` se comunique com o cluster recém-criado. É uma etapa essencial para gerenciar os recursos do Kubernetes no cluster.
 
