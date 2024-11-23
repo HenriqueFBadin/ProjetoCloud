@@ -1,0 +1,721 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>Deploy No AWS - Projeto Cloud - API Restful e AWS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#deploy-da-aplicacao-no-aws" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Projeto Cloud - API Restful e AWS" class="md-header__button md-logo" aria-label="Projeto Cloud - API Restful e AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Projeto Cloud - API Restful e AWS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Deploy No AWS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/HenriqueFBadin/ProjetoCloud" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Projeto Cloud - API Restful e AWS" class="md-nav__button md-logo" aria-label="Projeto Cloud - API Restful e AWS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Projeto Cloud - API Restful e AWS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/HenriqueFBadin/ProjetoCloud" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Deploy No AWS
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Deploy No AWS
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#como-foi-feito-o-deploy-do-projeto-na-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      Como foi feito o deploy do projeto na AWS?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-testar-a-aplicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Como testar a aplicação?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video-de-execucao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vídeo de Execução
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vídeo de Referência
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#como-foi-feito-o-deploy-do-projeto-na-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      Como foi feito o deploy do projeto na AWS?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-testar-a-aplicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Como testar a aplicação?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video-de-execucao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vídeo de Execução
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vídeo de Referência
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="deploy-da-aplicacao-no-aws">Deploy da aplicação no AWS</h1>
+<p>Para acessar a API restful que foi implementada na AWS você pode acessar o seguinte link: <a href="http://ac815a5754c5f4c00a2d160a0dacc9bc-392542149.us-east-2.elb.amazonaws.com">aqui</a>. Por aqui você pode acessar o swagger da API, que é uma representação visual dos endpoints, e ver exemplos de como devem ser os parâmetros. Entretanto, o swagger está com algum problema de CORS que eu não consegui resolver, então eu recomendaria a utilização do postman ou a utilização de chamadas CUrl para testar os endpoints da API. As instruções de como fazer isso estão no final dessa documentação, apenas garanta que está utilizando o seguinte link: <a href="http://ac815a5754c5f4c00a2d160a0dacc9bc-392542149.us-east-2.elb.amazonaws.com">aqui</a>.</p>
+<p>A aplicação foi configurada para operar em um cluster do Elastic Kubernetes Service (EKS) na região de Ohio da AWS, garantindo escalabilidade e gerenciamento eficiente de containers. Para acessar a aplicação, basta acessar o link acima. A aplicação foi dividida em dois deployments, um para a base de dados e outro para a aplicação. A base de dados é um container com uma imagem do postgres e a aplicação é um container com uma imagem de uma aplicação em NodeJS.</p>
+<h2 id="como-foi-feito-o-deploy-do-projeto-na-aws">Como foi feito o deploy do projeto na AWS?</h2>
+<p>A partir daqui, este documento descreve as etapas que foram necessárias para criar e configurar um cluster EKS (Elastic Kubernetes Service) na AWS utilizando a AWS CLI. Cada etapa será explicada em detalhes, incluindo o motivo de sua realização. O objetivo é ajudar a configurar e gerenciar um cluster Kubernetes para hospedar aplicações modernas.</p>
+<ol>
+<li>
+<p><strong>Instalação do CLI da AWS</strong>:</p>
+<p>O AWS CLI é uma ferramenta de linha de comando que permite interagir com os serviços da AWS.Para instalar o AWS CLI, as instruções presentes no site <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">aqui</a> foram usadas como referência.</p>
+</li>
+<li>
+<p><strong>Configuração do AWS CLI</strong>:</p>
+<p>Após a instalação do AWS CLI, foi necessário configurar o acesso à sua conta da AWS. Para configurar o AWS CLI, foi utilizada como base a seguinte documentação <a href="https://docs.aws.amazon.com/pt_br/eks/latest/userguide/install-awscli.html">aqui</a>.</p>
+<p>2.1. <strong>Criar uma chave de acesso</strong>: Para configurar o AWS CLI, é necessário criar uma chave de acesso na AWS. Para isso os seguintes passos foram seguidos:</p>
+<ul>
+<li>Faça login no AWS Management Console</li>
+</ul>
+<blockquote>
+<p>Conta de usuário único:</p>
+</blockquote>
+<ul>
+<li>no canto superior direito, escolha seu nome de usuário da AWS para abrir o menu de navegação. Para este exemplo, selecione webadmin.</li>
+</ul>
+<blockquote>
+<p>Conta de vários usuários:</p>
+</blockquote>
+<ul>
+<li>Escolha IAM na lista de serviços. No painel do IAM, selecione Usuários e escolha o nome do usuário.</li>
+<li>Selecione Security credentials (Credenciais de segurança).</li>
+<li>Em Chaves de acesso, escolha Criar chave de acesso.</li>
+<li>Escolha Interface de linha de comandos (CLI) e, em seguida, escolha Próximo.</li>
+<li>Selecione Create access key (Criar chave de acesso).</li>
+<li>
+<p>Selecione Download do arquivo .csv para salvar a chave de acesso CSV no seu computador. Armazene o arquivo em um local seguro. Você não pode compartilhar essas informações na web.</p>
+<p>2.2. <strong>Para configurar a AWS CLI</strong>:</p>
+</li>
+</ul>
+<p>Para configurar a AWS CLI, os seguintes passos foram seguidos:</p>
+<ul>
+<li>Abra um terminal.</li>
+<li>Execute o comando <code>aws configure</code>.</li>
+<li>Forneça as seguintes informações:<ul>
+<li><strong>AWS Access Key ID</strong>: Chave de acesso da AWS.</li>
+<li><strong>AWS Secret Access Key</strong>: Chave secreta de acesso da AWS.</li>
+<li><strong>Default region name</strong>: Região padrão para os serviços da AWS.</li>
+<li><strong>Default output format</strong>: Formato de saída padrão para os comandos da AWS.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Instalação do EKSCTL</strong>:</p>
+<p>O eksctl é uma ferramenta de linha de comando que simplifica a criação, a configuração e a gestão de clusters do EKS. Para instalar o eksctl, as instruções presentes no site <a href="https://eksctl.io/installation/">aqui</a> foram usadas como referência. A ferramenta foi instalada no sistema operacional a partir de Third-Parties. Em resumo, os seguintes comandos foram executados no powershell:</p>
+<p><div class="terminal">choco install eksctl</div></p>
+<p>⚠️ Observação: Esse comando precisa que o powershell tenha permissão de administrador.</p>
+</li>
+<li>
+<p><strong>Criação da Role a ser utilizada</strong>:</p>
+<p>Uma role atribui permissões a uma entidade, permitindo-a acessar recursos e controlar ações na AWS. Para criar uma role, foi necessário entrar na aba de funções do IAM da AWS:</p>
+<p><img alt="Página de criação de roles" src="../PaginaDeRoles.png" /></p>
+<ul>
+<li>
+<p>A primeira role criada foi para o cluster, e possuia apenas a permissão <a href="https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-2#/roles/details/EksClusterRoleApp?section=permissions">AmazonEKSClusterPolicy</a>. Como é possível ver na descrição desta política concede ao Kubernetes as permissões necessárias para gerenciar recursos em seu nome, incluindo a permissão Ec2:CreateTags para adicionar informações de identificação a recursos da EC2, como instâncias, grupos de segurança e interfaces de rede elástica.</p>
+</li>
+<li>
+<p>A segunda role criada foi destinada ao <strong>Node Group</strong>. Essa role permite ao Amazon EKS gerenciar os serviços relacionados ao cluster. Contudo, para interações com outros serviços da AWS, podem ser necessários novos profiles com roles específicas, que devem ser criadas conforme as funções do Node Group.</p>
+</li>
+</ul>
+<p>Nesta role, foram adicionadas duas políticas principais: <a href="https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-2#/policies/details/arn%3Aaws%3Aiam%3A%3Aaws%3Apolicy%2FAmazonEKSWorkerNodePolicy?section=permissions">AmazonEKSWorkerNodePolicy</a> e <a href="https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-2#/policies/details/arn%3Aaws%3Aiam%3A%3Aaws%3Apolicy%2FAmazonEKS_CNI_Policy?section=permissions">AmazonEKS_CNI_Policy</a>.</p>
+<pre><code>- AmazonEKSWorkerNodePolicy: Concede aos nós de trabalho do EKS as permissões necessárias para operar e interagir com o cluster.
+- AmazonEKS_CNI_Policy: Permite ao Amazon VPC CNI Plugin gerenciar a configuração de endereços IP, incluindo listar, descrever e modificar Elastic Network Interfaces (ENIs).
+</code></pre>
+<p>Essas permissões garantem uma comunicação eficiente e uma integração adequada entre os nós de trabalho e o cluster EKS.</p>
+</li>
+<li>
+<p><strong>Criação da VPC e subnets</strong>:</p>
+<p>Para a criação da VPC utilizou-se um modelo pronto da AWS para criar subnets públicas e privadas de forma organizada, usando o CloudFormation (no caso, no formato Terraform para a AWS). A ideia é separar os recursos que precisam de acesso público daqueles que devem ficar em uma área mais protegida, sem acesso direto à internet.</p>
+<p>Com as subnets configuradas, também defini como as máquinas EC2 vão ser criadas. A diferença entre as subnets públicas e privadas é bem importante:</p>
+<p>Subnets Públicas: São para coisas que precisam acessar ou ser acessadas pela internet, tipo servidores web ou balanceadores de carga.
+Subnets Privadas: Ficam para os recursos mais internos, como bancos de dados ou sistemas de backend, que não podem ficar expostos diretamente.
+Essa configuração ajuda a deixar o ambiente mais seguro e também facilita a organização e o crescimento da infraestrutura, mesmo que seja algo simples agora.</p>
+<p>Foto da estrutura de rede gerada pela AWS:</p>
+<p><img alt="Foto da estrutura de rede gerada pela AWS" src="../estruturaRede.png" /></p>
+<p><a href="https://raw.githubusercontent.com/HenriqueFBadin/ProjetoCloud/main/amazon-eks-vpc-private-subnets.yml" id="download-vpc">
+<button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+Baixar o modelo de criação da VPC
+</button>
+</a></p>
+</li>
+<li>
+<p><strong>Criação do cluster</strong>:</p>
+<p>Criou-se o cluster passando para ele qual a role que usaria e qual a especificação de vpc usada. Ambas, a role e as especificações da vpc, são as criadas nos passos anteriores.</p>
+<p><img alt="Página de criação de clusters" src="../cria%C3%A7%C3%A3oDeClusters.png" />
+<img alt="Role do clusters" src="../RoleDoCluster.png" />
+<img alt="Criação de clusters" src="../CriacaoDoCluster.png" />
+<img alt="Criação de clusters 2" src="../CriacaoDoCluster2.png" /></p>
+</li>
+<li>
+<p><strong>Configurar o Contexto do Kubectl</strong>:</p>
+<p>Após criar o cluster, foi configrado o contexto do <code>kubectl</code> para se conectar ao cluster EKS:</p>
+<p><div class="terminal">aws eks --region us-east-2 update-kubeconfig --name eks-app-NASA</div></p>
+<p>Este comando atualiza o arquivo de configuração <code>kubeconfig</code> para permitir que o <code>kubectl</code> se comunique com o cluster recém-criado. É uma etapa essencial para gerenciar os recursos do Kubernetes no cluster.</p>
+</li>
+<li>
+<p><strong>Criação do Node Group</strong>:</p>
+<p>Criou-se um node group dentro do cluster para gerenciar os nós de trabalho. O node group é um conjunto de 2 instâncias EC2 que são usadas para executar os pods da aplicação, 1 para o db e outra para a API. Utilizou-se a role criado anteriormente para o node group.</p>
+</li>
+<li>
+<p><strong>Criação do Arquivo db-deployment.yaml</strong>:</p>
+<p>Criou-se um arquivo <code>db-deployment.yaml</code> com as configurações do deployment para a base de dados.</p>
+<p>Ele pode ser baixado aqui caso queira usá-lo como exemplo:</p>
+<p><a href="https://raw.githubusercontent.com/HenriqueFBadin/ProjetoCloud/main/db-deployment.yml" id="download-db">
+<button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+Baixar db-deployment.yml
+</button>
+</a></p>
+</li>
+<li>
+<p><strong>Criação do Arquivo web-deployment.yaml</strong>:</p>
+<p>Criou-se um arquivo <code>web-deployment.yaml</code> com as configurações do deployment para a base de dados.</p>
+<p>Ele pode ser baixado aqui caso queira usá-lo como exemplo:</p>
+<p><a href="https://raw.githubusercontent.com/HenriqueFBadin/ProjetoCloud/main/web-deployment.yml" id="download-web">
+<button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+Baixar web-deployment.yml
+</button>
+</a></p>
+</li>
+<li>
+<p><strong>Deployment dos clusters</strong>:</p>
+<p>Execute os comandos abaixo para realizar o deployment do banco de dados e da aplicação web:</p>
+<p><div class="terminal">kubectl apply -f db-deployment.yaml
+kubectl apply -f web-deployment.yaml
+</div></p>
+</li>
+<li>
+<p><strong>Verificando status dos deployments</strong>:</p>
+<p>Para encontrar possíveis erros, é importante verificar o status dos deployments. Alguns comandos úteis são:</p>
+<ul>
+<li><code>kubectl describe deployment &lt;deployment-name&gt;</code>: Mostra informações detalhadas sobre um deployment.</li>
+</ul>
+<p><div class="terminal">kubectl describe deployment nodejs</div></p>
+<ul>
+<li><code>kubectl get all</code>: Mostra todos os recursos do cluster.</li>
+</ul>
+<p><div class="terminal">kubectl get all</div></p>
+<ul>
+<li><code>kubectl get pods</code>: Mostra todos os pods do cluster.</li>
+</ul>
+<p><div class="terminal">kubectl get pods</div></p>
+<ul>
+<li><code>kubectl logs &lt;pod-name&gt;</code>: Mostra os logs de um pod específico.</li>
+</ul>
+<p><div class="terminal">kubectl logs nodejs-app-5d5d55f889-p86q8</div></p>
+</li>
+<li>
+<p><strong>Obtendo o link da aplicação</strong>:</p>
+<p>Para obter o link da aplicação, foi utilizado o comando abaixo:</p>
+<p><div class="terminal">kubectl get svc nodejs-app</div></p>
+<p>Este comando exibe informações sobre o serviço, incluindo o endereço IP ou URL que pode ser usado para acessar a aplicação.</p>
+</li>
+</ol>
+<h2 id="como-testar-a-aplicacao">Como testar a aplicação?</h2>
+<p>Para testar a aplicação, você pode acessar o link da aplicação que foi obtido no passo anterior.</p>
+<p>Com esse link, podemos utilizar o postman ou realizarmos chamadas CUrl para testar os endpoints da API. A seguir, temos um exemplo de como realizar uma chamada CUrl para os endpoints da API usando o powershell, mude os valores para testar os endpoints da API:</p>
+<ul>
+<li>Registro:</li>
+</ul>
+<pre><code class="language-bash">curl -X POST &quot;http://ac815a5754c5f4c00a2d160a0dacc9bc-392542149.us-east-2.elb.amazonaws.com/registrar&quot; -H &quot;Content-Type: application/json&quot; -d '{&quot;nome&quot;: &quot;testando&quot;, &quot;email&quot;: &quot;testePadrao@gmail.com&quot;, &quot;senha&quot;: &quot;teste&quot;}'
+</code></pre>
+<ul>
+<li>Login:</li>
+</ul>
+<pre><code class="language-bash">curl -X POST &quot;http://ac815a5754c5f4c00a2d160a0dacc9bc-392542149.us-east-2.elb.amazonaws.com/login&quot; -H &quot;Content-Type: application/json&quot; -d '{&quot;email&quot;: &quot;testePadrao@gmail.com&quot;, &quot;senha&quot;: &quot;teste&quot;}'
+</code></pre>
+<ul>
+<li>Consultar imagem:</li>
+</ul>
+<pre><code class="language-bash">Invoke-RestMethod -Uri 'http://ac815a5754c5f4c00a2d160a0dacc9bc-392542149.us-east-2.elb.amazonaws.com/consultar' -Method GET -Headers @{ &quot;Content-Type&quot; = &quot;application/json&quot;; &quot;Authorization&quot; = &quot;Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywibm9tZSI6InRlc3RlMTgxMSIsImVtYWlsIjoidGVzdGUxODExQGdtYWlsLmNvbSIsImlhdCI6MTczMjE2NzMyNSwiZXhwIjoxNzMyMTcwOTI1fQ.xRChB16g7PrmogMNRTvcN3cZ6PV85rtO6GOveCZ6rIE&quot; } -Body '{&quot;email&quot;: &quot;testePadrao@gmail.com&quot;, &quot;senha&quot;: &quot;teste&quot;}'
+</code></pre>
+<h2 id="video-de-execucao">Vídeo de Execução</h2>
+<p>Veja um vídeo curto de execução da aplicação: <a href="https://youtu.be/oUwb5SjlRE0">https://youtu.be/oUwb5SjlRE0</a>.</p>
+<h2 id="video-de-referencia">Vídeo de Referência</h2>
+<p><a href="https://www.youtube.com/live/JrT5YV1KMeY?si=n2kRSCtEjWjYtay5">https://www.youtube.com/live/JrT5YV1KMeY?si=n2kRSCtEjWjYtay5</a></p>
+<script>
+document.getElementById('download-vpc').addEventListener('click', function(event) {
+    event.preventDefault();
+    const url = this.href;
+    const fileName = 'amazon-eks-vpc-private-subnets.yml';
+
+    fetch(url)
+    .then(response => response.blob())
+    .then(blob => {
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = fileName;
+        link.click();
+    })
+    .catch(() => alert('Erro'));
+});
+</script>
+
+<script>
+document.getElementById('download-db').addEventListener('click', function(event) {
+    event.preventDefault();
+    const url = this.href;
+    const fileName = 'db-deployment.yml';
+
+    fetch(url)
+    .then(response => response.blob())
+    .then(blob => {
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = fileName;
+        link.click();
+    })
+    .catch(() => alert('Erro'));
+});
+</script>
+
+<script>
+document.getElementById('download-web').addEventListener('click', function(event) {
+    event.preventDefault();
+    const url = this.href;
+    const fileName = 'web-deployment.yml';
+
+    fetch(url)
+    .then(response => response.blob())
+    .then(blob => {
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = fileName;
+        link.click();
+    })
+    .catch(() => alert('Erro'));
+});
+</script>
+
+<style>
+body {
+    line-height: 1.8;
+}
+
+p {
+    line-height: 1.8;
+}
+
+ul, ol {
+    line-height: 1.8;
+}
+
+.terminal {
+    background-color: #1e1e1e;
+    color: #fff;
+    font-family: "Courier New", monospace;
+    padding: 15px;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    width: 600px;
+    margin: 20px auto;
+}
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
