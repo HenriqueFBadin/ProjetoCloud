@@ -12,8 +12,8 @@ services:
       POSTGRES_HOST: ${POSTGRES_HOST:-postgres}
 
   api:
-    build: ./app
-    #image: henriquefb/henriquesproject:ver-final
+    #build: ./app
+    image: henriquefb/henriquesproject:aws-latest
     depends_on:
       - postgres
     ports:

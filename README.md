@@ -230,6 +230,26 @@ Imagem disponível no Docker Hub: [Link para Docker Hub](https://hub.docker.com/
 
 O arquivo `compose.yaml` está localizado na raiz do projeto `https://github.com/HenriqueFBadin/ProjetoCloud`. Caso não consiga instalá-lo pelo botão, busque-o nesse repositório. Ele utiliza imagens do Docker Hub e configura o PostgreSQL e a API para que não haja necessidade de builds adicionais.
 
-```
+<a href="https://raw.githubusercontent.com/HenriqueFBadin/ProjetoCloud/main/compose.yml" id="download">
+   <button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+   Baixar compose.yml
+   </button>
+</a>
 
-```
+<script>
+document.getElementById('download').addEventListener('click', function(event) {
+    event.preventDefault();
+    const url = this.href;
+    const fileName = 'compose.yml';
+
+    fetch(url)
+    .then(response => response.blob())
+    .then(blob => {
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = fileName;
+        link.click();
+    })
+    .catch(() => alert('Erro'));
+});
+</script>

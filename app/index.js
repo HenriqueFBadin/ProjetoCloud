@@ -52,6 +52,45 @@ app.listen(PORT, async () => {
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
+app.get('/', (req, res) => {
+    res.send(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Bem-vindo</title>
+            <style>
+                body {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    margin: 0;
+                    font-family: Arial, sans-serif;
+                    background-color: #f5f5f5;
+                    text-align: center;
+                }
+                a {
+                    color: #007bff;
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+                a:hover {
+                    text-decoration: underline;
+                }
+            </style>
+        </head>
+        <body>
+            <div>
+                <h1>Bem-vindo!</h1>
+                <p>Por favor, use o link ao lado para acessar a documentação: <a href="https://henriquefbadin.github.io/ProjetoCloud/" target="_blank">https://henriquefbadin.github.io/ProjetoCloud/</a></p>
+            </div>
+        </body>
+        </html>
+    `);
+});
+
 app.post('/registrar', async (req, res) => {
     /*
     #swagger.tags = ['Registro']

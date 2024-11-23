@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nodejs
-          image: henriquefb/henriquesproject:aws
+          image: henriquefb/henriquesproject:aws-latest
           env:
             - name: SECRET_KEY
               value: f!3D@8gT4jK$2pR%9zY^7hB&5xC*1mQ
